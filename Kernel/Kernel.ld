@@ -8,25 +8,26 @@
  * Sets the kernel load point.
 */
 
-ENTRY(Kernel_Start)
+ENTRY(kernel_Entry)
 
 SECTIONS
 {
-    . = 0x0; 
+  . = 0x0; 
 
-    .text BLOCK(0x1000) : {
-        *(.text)   
-    }
+  .text BLOCK(0x1000) : {
+      init.o(.text)
+      *(.text)
+  }
 
-    .rodata BLOCK(0x1000) : {
-        *(.rodata)
-    }
+  .rodata BLOCK(0x1000) : {
+      *(.rodata)
+  }
 
-    .data BLOCK(0x1000) : {
-        *(.data)
-    }
+  .data BLOCK(0x1000) : {
+      *(.data)
+  }
 
-    .bss BLOCK(0x1000) : {
-        *(.bss)
-    }
+  .bss BLOCK(0x1000) : {
+      *(.bss)
+  }
 }
